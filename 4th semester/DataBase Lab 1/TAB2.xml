@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db-schema name="Football">
+        <table name="Positions">
+                <columns>
+                        <column name="id"
+                                type="int"
+                                allows-null="false" />
+                        <column name="name"
+                                type="VARCHAR"
+                                length="50"
+                                allows-null="false" />
+                </columns>
+                <constraints>
+                        <primary-key name="PK_first">
+                                <column-ref name="id"/>
+                        </primary-key>
+                </constraints>
+        </table>
+        <table name="Coaches">
+                <columns>
+                        <column name="id"
+                                type="int"
+                                allows-null="false" />
+                        <column name="name"
+                                type="VARCHAR"
+                                length="50"
+                                allows-null="false" />
+                </columns>
+                <constraints>
+                        <primary-key name="PK_first">
+                                <column-ref name="id"/>
+                        </primary-key>
+                </constraints>
+        </table>
+        <table name="Teams">
+                <columns>
+                        <column name="id"
+                                type="int"
+                                allows-null="false" />
+                        <column name="name"
+                                type="VARCHAR"
+                                length="50"
+                                allows-null="false" />
+                        <column name="location"
+                                type="VARCHAR"
+                                length="50" />
+                        <column name="coach_id"
+                                type="int" />
+                </columns>
+                <constraints>
+                        <primary-key name="PK_first">
+                                <column-ref name="id"/>
+                        </primary-key>
+                        <foreign-key name="PK_First" references="Coaches">
+                                <column-ref name="coach_id"/>
+                                <referenced-column name="id"/>
+                        </foreign-key>
+                </constraints>
+        </table>
+        <table name="Players">
+                <columns>
+                        <column name="id"
+                                type="int"
+                                allows-null="false" />
+                        <column name="name"
+                                type="VARCHAR"
+                                length="50"
+                                allows-null="false" />
+                        <column name="age"
+                                type="int" />
+                        <column name="pos_id"
+                                type="int" />
+                        <column name="team_id"
+                                type="int" />
+                        <column name="start_date"
+                                type="data" />
+                </columns>
+                <constraints>
+                        <primary-key name="PK_first">
+                                <column-ref name="id"/>
+                        </primary-key>
+                        <foreign-key name="PK_First" references="Positions">
+                                <column-ref name="pos_id"/>
+                                <referenced-column name="id"/>
+                        </foreign-key>
+                        <foreign-key name="PK_Second" references="Teams">
+                                <column-ref name="team_id"/>
+                                <referenced-column name="id"/>
+                        </foreign-key>
+                </constraints>
+        </table>
+        <table name="PlayersArchive">
+                <columns>
+                        <column name="player_id"
+                                type="int" />
+                        <column name="team_id"
+                                type="int" />
+                        <column name="start_date"
+                                type="data" />
+                        <column name="end_date"
+                                type="data" />
+                </columns>
+                <constraints>
+                        <foreign-key name="PK_First" references="Players">
+                                <column-ref name="player_id"/>
+                                <referenced-column name="id"/>
+                        </foreign-key>
+                        <foreign-key name="PK_Second" references="Teams">
+                                <column-ref name="team_id"/>
+                                <referenced-column name="id"/>
+                        </foreign-key>
+                </constraints>
+        </table>
+</db-schema>
