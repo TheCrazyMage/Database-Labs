@@ -1,2 +1,2 @@
 # Лабораторная №2
-Реализация Robin Hood hashing на С++.
+Реализация Robin Hood hashing на С++
